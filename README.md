@@ -46,7 +46,17 @@ Utiliser la commande `gradlew shadowJar`
 
 ## Utiliser l'API
 
-L'API est disponible sur [JitPack](https://jitpack.io/#Ghosty920/KamoofSMP-S2/).
+L'API est disponible via CodeMC.
+
+```kotlin
+repositories {
+    maven("https://repo.codemc.io/repository/ghosty920/")
+}
+
+dependencies {
+    compileOnly("im.ghosty.kamoof:API:version")
+}
+```
 
 Les classes sont accessibles sur [GitHub](https://github.com/Ghosty920/KamoofSMP-S2/tree/main/API/src/main/java/im/ghosty/kamoof/api), par exemple.
 

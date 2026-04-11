@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "im.ghosty.kamoof"
-version = "1.5.7"
+version = "1.5.8"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,8 @@ repositories {
 
 dependencies {
     implementation(project(":API"))
-    compileOnly("org.spigotmc:spigot-api:1.21.11-R0.1-SNAPSHOT")
+//    compileOnly("org.spigotmc:spigot-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:26.1-R0.1-SNAPSHOT")
 //    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
 
     implementation("net.kyori:adventure-api:4.26.1")
@@ -27,12 +28,14 @@ dependencies {
     implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
     implementation("net.kyori:adventure-platform-bungeecord:4.4.1")
 
-    implementation("xyz.haoshoku.nick:Main:v1.0.9")
-    implementation("com.samjakob:SpiGUI:v1.4.1")
-    implementation("net.wesjd:anvilgui:1.10.11-SNAPSHOT")
+    implementation("im.ghosty.nickapi:Main:v1.1.0")
+//    implementation("com.samjakob:SpiGUI:v1.4.1")
+    implementation(files("libs/SpiGUI-v2-2.0.0.jar"))
+    implementation("net.wesjd:anvilgui:1.10.12-SNAPSHOT")
 
-    compileOnly("org.projectlombok:lombok:1.18.42")
-    annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+    compileOnly("org.projectlombok:lombok:1.18.44")
+    annotationProcessor("org.projectlombok:lombok:1.18.44")
 }
 
 java {
@@ -52,12 +55,12 @@ tasks {
         archiveFileName.set("${project.name}-${project.version}.jar")
         minimize {
             exclude(project(":API"))
-            exclude(dependency("xyz.haoshoku.nick:Main:.*"))
+            exclude(dependency("im.ghosty.nickapi:Main:.*"))
             exclude(dependency("net.wesjd:anvilgui:.*"))
         }
-        relocate("com.samjakob.spigui", "im.ghosty.kamoof.deps.com.samjakob.spigui")
-        relocate("net.wesjd.anvilgui", "im.ghosty.kamoof.deps.net.wesjd.anvilgui")
-        relocate("xyz.haoshoku.nick", "im.ghosty.kamoof.deps.xyz.haoshoku.nick")
+        relocate("com.samjakob.spigui", "im.ghosty.kamoof.deps.spigui")
+        relocate("net.wesjd.anvilgui", "im.ghosty.kamoof.deps.anvilgui")
+        relocate("im.ghosty.nickapi", "im.ghosty.kamoof.deps.nickapi")
     }
 
     processResources {

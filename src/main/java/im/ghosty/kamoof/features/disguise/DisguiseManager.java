@@ -3,7 +3,7 @@ package im.ghosty.kamoof.features.disguise;
 import im.ghosty.kamoof.api.KamoofSMP;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
-import xyz.haoshoku.nick.NickAPI;
+import im.ghosty.nickapi.NickAPI;
 
 import java.util.Objects;
 

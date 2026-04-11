@@ -34,7 +34,6 @@ public final class Utils {
 	public static File findNickAPIFile() {
 		try {
 			Class<?> clazz = Bukkit.getPluginManager().getPlugin("NickAPI").getClass();
-			//Class<?> clazz = Class.forName("xyz.haoshoku.nick.NickPlugin"); // fsr ne marche pas???
 			URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
 			return new File(url.toURI());
 		} catch (Throwable exc) {

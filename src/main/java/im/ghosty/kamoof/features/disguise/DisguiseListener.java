@@ -13,7 +13,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
-import xyz.haoshoku.nick.NickAPI;
+import im.ghosty.nickapi.NickAPI;
 
 import java.util.Map;
 

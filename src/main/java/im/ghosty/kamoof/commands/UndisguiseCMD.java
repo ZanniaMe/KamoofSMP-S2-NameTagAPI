@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import xyz.haoshoku.nick.NickAPI;
+import im.ghosty.nickapi.NickAPI;
 
 import java.util.List;
 import java.util.Map;

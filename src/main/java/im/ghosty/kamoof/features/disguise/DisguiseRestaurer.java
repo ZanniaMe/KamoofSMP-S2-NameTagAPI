@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import xyz.haoshoku.nick.NickAPI;
+import im.ghosty.nickapi.NickAPI;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;

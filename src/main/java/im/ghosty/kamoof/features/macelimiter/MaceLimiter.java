@@ -13,7 +13,7 @@ import org.bukkit.event.block.CrafterCraftEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
-import xyz.haoshoku.nick.NickAPI;
+import im.ghosty.nickapi.NickAPI;
 
 import java.util.Map;
 
