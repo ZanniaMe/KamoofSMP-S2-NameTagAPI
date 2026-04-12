@@ -15,6 +15,9 @@ repositories {
     maven("https://repo.codemc.io/repository/ghosty920/")
     maven("https://jitpack.io")
     maven("https://mvn.wesjd.net/")
+    flatDir {
+        dirs("libs")
+    }
 }
 
 dependencies {
@@ -30,7 +33,7 @@ dependencies {
 
     implementation("im.ghosty.nickapi:Main:v1.1.0")
 //    implementation("com.samjakob:SpiGUI:v1.4.1")
-    implementation(files("libs/SpiGUI-v2-2.0.0.jar"))
+    implementation(mapOf("name" to "SpiGUI-v2-2.0.0", "ext" to "jar"))
     implementation("net.wesjd:anvilgui:1.10.12-SNAPSHOT")
 
 
@@ -56,6 +59,7 @@ tasks {
         minimize {
             exclude(project(":API"))
             exclude(dependency("im.ghosty.nickapi:Main:.*"))
+            exclude(dependency(".*:SpiGUI-v2-2.0.0:.*"))
             exclude(dependency("net.wesjd:anvilgui:.*"))
         }
         relocate("com.samjakob.spigui", "im.ghosty.kamoof.deps.spigui")
