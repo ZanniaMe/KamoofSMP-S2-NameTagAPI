@@ -12,6 +12,8 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.util.List;
 import java.util.Map;
@@ -28,9 +30,12 @@ public final class UndisguiseCMD implements CommandExecutor, TabCompleter {
 			Lang.send(sender, "PLAYER_ONLY");
 			return true;
 		}
+
+
+		INameTagAPI api = NameTagAPI.getApi();
 		
-		if (NickAPI.isNicked(player)) {
-			String disguise = NickAPI.getName(player);
+		if (api.hasNick(player)) {
+			String disguise = api.getNick(player);
 			
 			Bukkit.getPluginManager().callEvent(new KamoofUndisguiseEvent(player, disguise));
 			DisguiseManager.undisguise(player);

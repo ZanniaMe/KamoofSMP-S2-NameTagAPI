@@ -12,6 +12,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,11 +89,11 @@ public final class KamoofCMD implements CommandExecutor, TabCompleter {
 			}
 			case "reload": {
 				getInstance().reloadConfig();
-				try {
-					NickAPI.setupConfig(new File(getInstance().getDataFolder(), "nickapi.yml"));
+				/*try {
+					//NickAPI.setupConfig(new File(getInstance().getDataFolder(), "nickapi.yml"));
 				} catch (IOException e) {
-					NickAPI.setupConfig((ConfigurationSection) null);
-				}
+					//NickAPI.setupConfig((ConfigurationSection) null);
+				}*/
 				Lang.init();
 				Lang.send(player, "CONFIG_RELOADED");
 				return true;

@@ -8,6 +8,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 /**
  * L'instanciation de l'API du KamoofSMP.
@@ -34,26 +36,28 @@ public final class KamoofAPI extends KamoofSMP {
 			DisguiseRestaurer.set(player.getUniqueId(), name);
 		}
 	}
-	
+
 	@Override
 	public String getDisguise(OfflinePlayer player) {
+		INameTagAPI api = NameTagAPI.getApi();
+
 		if(player instanceof Player p) {
-			if(!NickAPI.isNicked(p))
+			if(!api.hasNick(p))
 				return null;
-			return NickAPI.getName(p);
+			return api.getNick(p);
 		} else {
 			return DisguiseRestaurer.get(player.getUniqueId());
 		}
 	}
-	
+
 	@Override
 	public String getName(OfflinePlayer player) {
 		try {
-			return player instanceof Player p ? NickAPI.getOriginalName(p) : player.getName();
+			return player.getName();
 		} catch (Throwable exc) {
 			exc.printStackTrace();
 			return null;
 		}
 	}
-	
+
 }

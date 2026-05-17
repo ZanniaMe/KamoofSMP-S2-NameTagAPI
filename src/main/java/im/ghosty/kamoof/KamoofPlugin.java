@@ -22,6 +22,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,12 +65,12 @@ public final class KamoofPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		super.onEnable();
-		try {
+		/*try {
 			NickAPI.setupConfig(new File(getDataFolder(), "nickapi.yml"));
 		} catch (IOException e) {
 			NickAPI.setupConfig((ConfigurationSection) null);
-		}
-		NickAPI.setPlugin(this);
+		}*/
+		//NickAPI.setPlugin(this);
 		
 		instance = this;
 		saveDefaultConfig();
@@ -110,7 +112,7 @@ public final class KamoofPlugin extends JavaPlugin {
 	public void onDisable() {
 		super.onDisable();
 		FeatureManager.disable();
-		NickAPI.onDisable();
+		//NickAPI.onDisable();
 		metrics.shutdown();
 	}
 	

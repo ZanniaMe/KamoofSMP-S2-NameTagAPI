@@ -38,6 +38,7 @@ dependencies {
 
 
     compileOnly("org.projectlombok:lombok:1.18.44")
+    compileOnly("com.github.Lodestones:Name-Tag-API:1.0.2")
     annotationProcessor("org.projectlombok:lombok:1.18.44")
 }
 

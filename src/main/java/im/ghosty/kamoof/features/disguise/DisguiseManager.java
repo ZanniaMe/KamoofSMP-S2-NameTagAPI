@@ -4,6 +4,8 @@ import im.ghosty.kamoof.api.KamoofSMP;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.util.Objects;
 
@@ -20,6 +22,11 @@ public final class DisguiseManager {
 	 * @param name Le déguisement
 	 */
 	public static void disguise(Player player, String name) {
+
+
+		INameTagAPI api = NameTagAPI.getApi();
+		if (api == null) return; // Name Tag not loaded
+
 		// nom invalide, on part de l'idée que c'est un undisguise (on déguise en rien)
 		if(name == null || name.isEmpty()) {
 			undisguise(player);
@@ -33,14 +40,9 @@ public final class DisguiseManager {
 			undisguise(player);
 			return;
 		}
-		
-		player.setDisplayName(player.getDisplayName().replace(player.getName(), name));
-		
-		NickAPI.nick(player, name);
-		NickAPI.setSkin(player, name);
-		NickAPI.setUniqueId(player, name);
-		NickAPI.setGameProfileName(player, name);
-		NickAPI.refreshPlayer(player);
+
+		api.setNickFromPlayer(player, name);
+
 	}
 	
 	/**
@@ -48,16 +50,16 @@ public final class DisguiseManager {
 	 * @param player La cible
 	 */
 	public static void undisguise(Player player) {
+
+
+		INameTagAPI api = NameTagAPI.getApi();
+		if (api == null) return; // Name Tag not loaded
+
 		// s'il n'est pas déguisé, évitons de refresh dans le vide
-		if(!NickAPI.isNicked(player)) return;
-		
-		player.setDisplayName(player.getDisplayName().replace(NickAPI.getName(player), KamoofSMP.getInstance().getName(player)));
-		
-		NickAPI.resetNick(player);
-		NickAPI.resetSkin(player);
-		NickAPI.resetUniqueId(player);
-		NickAPI.resetGameProfileName(player);
-		NickAPI.refreshPlayer(player);
+		if(!api.hasNick(player)) return;
+
+		api.resetNick(player);
+
 	}
 	
 }

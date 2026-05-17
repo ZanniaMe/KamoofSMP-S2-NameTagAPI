@@ -14,6 +14,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.util.Map;
 
@@ -66,9 +68,11 @@ public final class DisguiseListener extends Feature {
 		
 		if (player.getGameMode() != GameMode.CREATIVE)
 			event.getItem().setAmount(event.getItem().getAmount() - 1);
-		
-		if (KamoofPlugin.config().getBoolean("disguise.give-back") && NickAPI.isNicked(player)) {
-			ItemStack item = SkullManager.getSkull(NickAPI.getName(player));
+
+		INameTagAPI api = NameTagAPI.getApi();
+
+		if (KamoofPlugin.config().getBoolean("disguise.give-back") && api.hasNick(player)) {
+			ItemStack item = SkullManager.getSkull(api.getNick(player));
 			if (!player.getInventory().addItem(item).isEmpty())
 				player.getWorld().dropItem(player.getLocation(), item);
 		}
@@ -84,10 +88,14 @@ public final class DisguiseListener extends Feature {
 	 */
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onDeath(PlayerDeathEvent event) {
+
+		INameTagAPI api = NameTagAPI.getApi();
+		if (api == null) return; // Name Tag not loaded
+
 		Player player = event.getEntity();
-		if (!NickAPI.isNicked(player))
+		if (!api.hasNick(player))
 			return;
-		String disguise = NickAPI.getName(player);
+		String disguise = api.getNick(player);
 		KamoofSMP.getInstance().disguise(player, null);
 		Message.send(player, "messages.lostdisguise", Map.of("player", KamoofSMP.getInstance().getName(player), "nick", disguise));
 		
@@ -104,17 +112,18 @@ public final class DisguiseListener extends Feature {
 		if (event.getLoginResult() != AsyncPlayerPreLoginEvent.Result.ALLOWED)
 			return;
 		Bukkit.getScheduler().runTask(KamoofPlugin.getInstance(), () -> {
-			Player player = NickAPI.getPlayerOfNickedName(event.getName());
+			//Player player = NickAPI.getPlayerOfNickedName(event.getName());
+			Player player = null;
 			if (player == null)
 				return;
-			NickAPI.setGameProfileName(player, NickAPI.getOriginalGameProfileName(player));
-			NickAPI.refreshPlayer(player);
+			//NickAPI.setGameProfileName(player, NickAPI.getOriginalGameProfileName(player));
+			//NickAPI.refreshPlayer(player);
 			
 			Bukkit.getScheduler().runTaskLater(KamoofPlugin.getInstance(), () -> {
 				if (!player.isOnline())
 					return;
-				NickAPI.setGameProfileName(player, event.getName());
-				NickAPI.refreshPlayer(player);
+				//NickAPI.setGameProfileName(player, event.getName());
+				//NickAPI.refreshPlayer(player);
 			}, 1L);
 		});
 	}

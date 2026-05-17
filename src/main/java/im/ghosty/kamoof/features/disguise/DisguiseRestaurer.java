@@ -11,6 +11,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import im.ghosty.nickapi.NickAPI;
+import gg.lode.nametagapi.NameTagAPI;
+import gg.lode.nametagapi.INameTagAPI;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -85,8 +87,8 @@ public final class DisguiseRestaurer extends Feature {
 			return;
 		}
 		Bukkit.getOnlinePlayers().forEach(player -> {
-			if (NickAPI.isNicked(player) && !NickAPI.getOriginalName(player).equalsIgnoreCase(NickAPI.getName(player)))
-				set(player.getUniqueId(), NickAPI.getName(player));
+			//if (NickAPI.isNicked(player) && !NickAPI.getOriginalName(player).equalsIgnoreCase(NickAPI.getName(player)))
+				//set(player.getUniqueId(), NickAPI.getName(player));
 		});
 		saveData();
 	}
