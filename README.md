@@ -1,3 +1,8 @@
+# CETTE VERSION EST UN FORK DE LA VERSION DE GHOSTY920
+
+Elle change l'api utiliser pour le nick passant de nickapi à NameTagAPI
+VOUS DEVEZ INSTALLER CE PLUGIN À COTÉ : https://modrinth.com/plugin/nametags
+
 # KamoofSMP Saison 2
 
 <div align="center">
